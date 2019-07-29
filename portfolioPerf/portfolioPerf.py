@@ -1,15 +1,17 @@
+"""Модуль содержит класс эффективности портфеля."""
+
 import numpy as np
 import pandas as pd
 import datetime
-
 
 weights = pd.read_csv('weights.csv',sep=',', encoding='utf8', parse_dates=['date'], dayfirst=False, index_col='date')
 prices = pd.read_csv('prices.csv',sep=',', encoding='utf8', parse_dates=['date'], dayfirst=False, index_col='date')
 currencies = pd.read_csv('currencies.csv',sep=',', encoding='utf8', dayfirst=False, index_col='asset')
 exchanges = pd.read_csv('exchanges.csv',sep=',', encoding='utf8', parse_dates=['date'], dayfirst=False, index_col='date')
 
-
+"""Класс Производительность Портфеля."""
 class PortfolioPerformance:
+    """Метод вычисления производительности активов. Принимаемые данные: начальная и конечная даты"""
     def calculate_asset_performance(start_date, end_date):
         start_date = pd.Timestamp(start_date)
         end_date = pd.Timestamp(end_date)
@@ -39,7 +41,7 @@ class PortfolioPerformance:
         print("Asset Performance:"+ '\n',P)
         return (P)
 
-
+    """Метод вычисления производительности валют. Принимаемые данные: начальная и конечная даты"""
     def calculate_currency_performance(start_date, end_date):
         start_date = pd.Timestamp(start_date)
         end_date = pd.Timestamp(end_date)
@@ -75,6 +77,7 @@ class PortfolioPerformance:
         print("Currency Performance:"+ '\n', CP)
         return (CP)
 
+    """Метод вычисления полной производительности. Принимаемые данные: начальная и конечная даты"""
     def calculate_total_performance(start_date, end_date):
         start_date = pd.Timestamp(start_date)
         end_date = pd.Timestamp(end_date)
